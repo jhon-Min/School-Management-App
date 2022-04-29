@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->prefix('dashboard')->group(function () {
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    // User Management
+    Route::resource('/user-manage', UserController::class);
 });
 
 Route::post('/logout', [HomeController::class, 'logout'])->name('logout');

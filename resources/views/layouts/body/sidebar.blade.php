@@ -1,14 +1,14 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index-2.html">CodiePie</a>
+            <a href="{{ route('home') }}">Company Name</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index-2.html">CP</a>
+            <a href="{{ route('home') }}">CP</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="dropdown active">
+            <li class="dropdown {{ request()->url() == route('home') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
                     <x-menu-item link="{{ route('home') }}">Home</x-menu-item>
@@ -23,9 +23,9 @@
                     <span>Manage User</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
+                    <x-menu-item link="{{ route('user-manage.index') }}">Users</x-menu-item>
 
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+                    <x-menu-item link="{{ route('user-manage.create') }}">Create User</x-menu-item>
                 </ul>
             </li>
 

@@ -46,7 +46,9 @@
                 @include('layouts.body.sidebar')
 
                 <!-- Start app main Content -->
-                @yield('content')
+                <div class="main-content">
+                    @yield('content')
+                </div>
 
                 <!-- Start app Footer part -->
                 @include('layouts.body.footer')
