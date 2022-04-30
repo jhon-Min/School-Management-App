@@ -15,6 +15,20 @@
                 </ul>
             </li>
 
+            <x-menu-title>Categories</x-menu-title>
+
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-solid fa-building"></i>
+                    <span>Department</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <x-menu-item link="{{ route('department.index') }}">Lists</x-menu-item>
+
+                    <x-menu-item link="{{ route('department.create') }}">Create</x-menu-item>
+                </ul>
+            </li>
+
             <x-menu-title>Management</x-menu-title>
 
             <li class="dropdown">

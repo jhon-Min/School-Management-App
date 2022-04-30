@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,9 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
     // User Management
     Route::resource('/user-manage', UserController::class);
+
+    // Department
+    Route::resource('/department', DepartmentController::class);
 });
 
 Route::post('/logout', [HomeController::class, 'logout'])->name('logout');

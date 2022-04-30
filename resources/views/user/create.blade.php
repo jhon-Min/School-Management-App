@@ -6,14 +6,10 @@
 
 @section('content')
     <section class="section">
-        <div class="section-header">
-            <h1>Users</h1>
-            <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('home') }}">Home</a></div>
-                <div class="breadcrumb-item"><a href="{{ route('user-manage.index') }}">User Lists</a></div>
-                <div class="breadcrumb-item">Add User</div>
-            </div>
-        </div>
+        <x-bread-crumb title="Users">
+            <div class="breadcrumb-item"><a href="{{ route('user-manage.index') }}">User Lists</a></div>
+            <div class="breadcrumb-item">Add User</div>
+        </x-bread-crumb>
 
         <div class="row">
             <div class="col-12 col-lg-10">

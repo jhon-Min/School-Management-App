@@ -18,9 +18,14 @@
     <link rel="stylesheet" href="{{ asset('dashboard/assets/modules/weather-icon/css/weather-icons-wind.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/assets/modules/summernote/summernote-bs4.css') }}">
 
+    <!-- Datatable CDN -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('dashboard/assets/css/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/assets/css/components.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     @yield('theme')
 </head>
@@ -68,14 +73,31 @@
     <script src="{{ asset('dashboard/assets/modules/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('dashboard/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
+    <!-- Datatable JavaScript -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+
+
+    <!-- Laravel Javascript Validation -->
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
+
     <!-- Page Specific JS File -->
     <script src="{{ asset('dashboard/js/page/index-0.js') }}"></script>
 
     <!-- Template JS File -->
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('dashboard/js/scripts.js') }}"></script>
     <script src="{{ asset('dashboard/js/custom.js') }}"></script>
 
     @yield('scripts')
+
+    @auth
+        @include('components.toast')
+
+        @include('components.create-alert')
+    @endauth
 </body>
 
 <!-- index-0.html  Tue, 07 Jan 2020 03:35:42 GMT -->
