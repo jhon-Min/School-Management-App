@@ -10,7 +10,6 @@
             <div class="breadcrumb-item">Dep Lists</div>
         </x-bread-crumb>
     </section>
-
     <div class="row">
         <div class="col-12">
             <div class="card shadow-sm">
@@ -18,14 +17,15 @@
                     <h4>Departments</h4>
                     <a href="{{ route('department.create') }}" class="btn btn-primary">Add</a>
                 </div>
-                <div class="card-body p-0">
-                    <table class="table table-striped table-hover">
+                <div class="card-body">
+                    <table class="table table-striped table-hover dt-responsive no-wrap w-100" id="dataTable">
                         <thead>
                             <tr>
+                                <th class="no-sort"></th>
                                 <th>Department</th>
                                 <th>Phone</th>
-                                <th>Control</th>
-                                <th>Updated_At</th>
+                                <th class="no-sort">Action</th>
+                                <th class="no-sort hidden">Updated_At</th>
                             </tr>
                         </thead>
                     </table>
@@ -37,6 +37,56 @@
 
 @section('scripts')
     <script>
-
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                ajax: '{{ route('department.ssd') }}',
+                columns: [{
+                        data: 'plus-icon',
+                        name: 'plus-icon',
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'phone',
+                        name: 'phone',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                    },
+                    {
+                        data: 'updated_at',
+                        name: 'updated_at',
+                    },
+                ],
+                order: [
+                    [1, "desc"]
+                ],
+            });
+            $(document).on('click', '.del-btn', function(e, id) {
+                e.preventDefault();
+                var id = $(this).data("id");
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                        $.ajax({
+                            method: "DELETE",
+                            url: `/department/${id}`,
+                        }).done(function(res) {
+                            table.ajax.reload();
+                        })
+                    }
+                });
+            })
+        })
     </script>
 @endsection

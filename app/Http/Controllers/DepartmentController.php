@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
-use App\Models\Department;
 
 class DepartmentController extends Controller
 {
@@ -16,6 +18,27 @@ class DepartmentController extends Controller
     public function index()
     {
         return view('department.index');
+    }
+
+    public function ssd(Request $request)
+    {
+        $departments = Department::query();
+        return DataTables::of($departments)
+            ->addColumn('plus-icon', function ($each) {
+                return null;
+            })
+            ->addColumn('action', function ($each) {
+                $edit = "";
+                $del = "";
+
+                $edit = '<a href="'.route('department.edit', $each->id).'" class="btn mr-1 btn-success btn-sm rounded-circle"><i class="fa-solid fa-pen-to-square fw-light"></i></a>';
+
+                $del = '<a href="#" class="btn btn-danger btn-sm rounded-circle del-btn" data-id="' . $each->id . '"><i class="fa-solid fa-trash-alt fw-light"></i></a>';
+
+                return '<div class="action-icon">' . $edit  . $del. '</div>';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     /**

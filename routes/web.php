@@ -30,6 +30,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::resource('/user-manage', UserController::class);
 
     // Department
+    Route::get('/department/datatable/ssd', [DepartmentController::class, 'ssd'])->name('department.ssd');
     Route::resource('/department', DepartmentController::class);
 });
 
