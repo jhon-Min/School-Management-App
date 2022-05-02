@@ -25,7 +25,7 @@
                                 <th>Department</th>
                                 <th>Phone</th>
                                 <th class="no-sort">Action</th>
-                                <th class="no-sort hidden">Updated_At</th>
+                                <th class="hidden">Updated_At</th>
                             </tr>
                         </thead>
                     </table>
@@ -38,7 +38,7 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            $('#dataTable').DataTable({
+            var table = $('#dataTable').DataTable({
                 ajax: '{{ route('department.ssd') }}',
                 columns: [{
                         data: 'plus-icon',
@@ -57,12 +57,12 @@
                         name: 'action',
                     },
                     {
-                        data: 'updated_at',
-                        name: 'updated_at',
+                        data: 'created_at',
+                        name: 'created_at',
                     },
                 ],
                 order: [
-                    [1, "desc"]
+                    [4, "desc"]
                 ],
             });
             $(document).on('click', '.del-btn', function(e, id) {
@@ -80,8 +80,9 @@
                         Swal.fire("Deleted!", "Your file has been deleted.", "success");
                         $.ajax({
                             method: "DELETE",
-                            url: `/department/${id}`,
+                            url: `/dashboard/department/${id}`,
                         }).done(function(res) {
+                            console.log('aung p')
                             table.ajax.reload();
                         })
                     }

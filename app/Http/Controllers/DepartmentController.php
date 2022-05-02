@@ -86,7 +86,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view('department.edit', compact('department'));
     }
 
     /**
@@ -98,7 +98,11 @@ class DepartmentController extends Controller
      */
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
-        //
+        $department->name = $request->name;
+        $department->phone = $request->phone;
+        $department->update();
+
+        return redirect()->route('department.index')->with('create_alert', ['icon' => 'success', 'title' => 'Successfully Updated', 'message' => $department->name . ' is successfully updated']);
     }
 
     /**
@@ -109,6 +113,6 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        return $department->delete();
     }
 }

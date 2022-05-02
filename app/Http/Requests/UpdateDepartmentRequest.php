@@ -13,7 +13,7 @@ class UpdateDepartmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,10 @@ class UpdateDepartmentRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('department')->id;
         return [
-            //
+            "name" => "required|min:2|max:100|unique:departments,name," .$id,
+            "phone" => "required"
         ];
     }
 }

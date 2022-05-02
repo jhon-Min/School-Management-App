@@ -31,7 +31,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
     // Department
     Route::get('/department/datatable/ssd', [DepartmentController::class, 'ssd'])->name('department.ssd');
-    Route::resource('/department', DepartmentController::class);
+    Route::resource('/department', DepartmentController::class)->except('show');
 });
 
 Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
