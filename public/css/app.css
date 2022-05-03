@@ -1429,9 +1429,22 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   left: auto;
 }
 
+.profile-image {
+  width: 110px !important;
+  height: 110px !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  float: left;
+  margin: -35px -5px 0 30px;
+  position: relative;
+  z-index: 1;
+  border: 2px solid white;
+}
+
 .profile-thumb {
-  width: 40px;
-  height: 40px;
+  width: 40px !important;
+  height: 40px !important;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;

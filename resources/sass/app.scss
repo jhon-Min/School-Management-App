@@ -4,13 +4,25 @@
 @import "~@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css";
 
 
+.profile-image{
+    width: 110px !important;
+    height: 110px !important;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    float: left;
+    margin: -35px -5px 0 30px;
+    position: relative;
+    z-index: 1;
+    border: 2px solid white;
+}
 
 .profile-thumb{
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
     border-radius: 50%;
     object-fit: cover;
 }
+
 
 mark{
     background: orange;

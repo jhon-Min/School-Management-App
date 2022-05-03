@@ -192,7 +192,8 @@
         </li>
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="{{ auth()->user()->profile_img_path() }}" class="rounded-circle mr-1">
+                <img alt="image" src="{{ auth()->user()->profile_img_path() }}"
+                    class="rounded-circle mr-1 profile-thumb">
                 <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">

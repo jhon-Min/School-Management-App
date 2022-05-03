@@ -15,6 +15,18 @@
                 </ul>
             </li>
 
+            <x-menu-title>Profile</x-menu-title>
+
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Manage Profile</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <x-menu-item link="{{ route('profile.index') }}">Profile</x-menu-item>
+                </ul>
+            </li>
+
             <x-menu-title>Categories</x-menu-title>
 
             <li class="dropdown">
