@@ -45,9 +45,14 @@ class User extends Authenticatable
     public function profile_img_path()
     {
         if ($this->profile_photo) {
-            return asset('storage/profile-photos/' . $this->profile_photo);
+            return asset('storage/profile/' . $this->profile_photo);
         }
 
         return asset('default-avatar.png');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 }

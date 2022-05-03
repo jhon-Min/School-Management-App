@@ -1,13 +1,35 @@
 // ==== Custom Scss & Other Libraries ====s
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 @import "~sweetalert2/src/sweetalert2.scss";
+@import "~@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css";
+
+
+
+.profile-thumb{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
 mark{
     background: orange;
     color: black;
 }
 
+.custom-form{
+    .form-control[readonly] {
+        background: white !important;
+    }
+}
+
+
 // =========== Datatable ==========
+.table td, .table th {
+    padding: 12px 10px;
+    vertical-align: middle;
+}
+
 @media screen and (max-width: 767px) {
     div.dataTables_wrapper div.dataTables_length,
     div.dataTables_wrapper div.dataTables_filter,

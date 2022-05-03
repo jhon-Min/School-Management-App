@@ -25,7 +25,7 @@
                                 <th>Department</th>
                                 <th>Phone</th>
                                 <th class="no-sort">Action</th>
-                                <th class="hidden">Updated_At</th>
+                                <th class="hidden">Created_At</th>
                             </tr>
                         </thead>
                     </table>

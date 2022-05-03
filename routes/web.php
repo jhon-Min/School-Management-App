@@ -27,7 +27,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // User Management
-    Route::resource('/user-manage', UserController::class);
+    Route::get('/user/datatable/ssd', [UserController::class, 'ssd'])->name('user.ssd');
+    Route::resource('/user', UserController::class);
 
     // Department
     Route::get('/department/datatable/ssd', [DepartmentController::class, 'ssd'])->name('department.ssd');

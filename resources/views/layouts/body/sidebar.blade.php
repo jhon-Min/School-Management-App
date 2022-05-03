@@ -37,9 +37,9 @@
                     <span>Manage User</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <x-menu-item link="{{ route('user-manage.index') }}">Users</x-menu-item>
+                    <x-menu-item link="{{ route('user.index') }}">Users</x-menu-item>
 
-                    <x-menu-item link="{{ route('user-manage.create') }}">Create User</x-menu-item>
+                    <x-menu-item link="{{ route('user.create') }}">Create User</x-menu-item>
                 </ul>
             </li>
 

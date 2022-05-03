@@ -13,7 +13,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,24 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('user');
+
         return [
-            //
+            "id_no" => "required|min:2|max:255|unique:users,id_no," . $id,
+            "name" => "required",
+            'email' => 'required|unique:users,email,' . $id,
+            'password' => 'nullable|min:4|max:255',
+            'phone' => 'required|min:9|max:11|unique:users,phone,' . $id,
+            'nrc' => 'required|min:3|unique:users,nrc_number,' . $id,
+            "mname" => "required",
+            "fname" => "required",
+            'birthday' => 'required|date',
+            'date_of_join' => 'required|date',
+            "gender" => "required",
+            "profile_photo" => "nullable|mimes:png,jpg|max:5000",
+            "usertype" => "required",
+            "department_id" => "required",
+            "address" => "nullable|min:3|max:255",
         ];
     }
 }

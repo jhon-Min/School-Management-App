@@ -14,16 +14,18 @@
 
     <!-- Datatable CDN -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('dashboard/assets/modules/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard/assets/modules/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('dashboard/assets/css/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/assets/css/components.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
     @yield('theme')
 </head>
 
@@ -67,8 +69,8 @@
     <!-- Datatable JavaScript -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
-    <scirpt src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></scirpt>
-    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js    "></script>
 
     <!-- Mark JS -->
     <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
@@ -76,15 +78,18 @@
 
     <!-- JS Libraies -->
     <script src="{{ asset('dashboard/assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('dashboard/js/page/index-0.js') }}"></script>
+    @yield('specific-js')
 
     <!-- Template JS File -->
-    <script src="{{ asset('js/dtable.js') }}"></script>
     <script src="{{ asset('dashboard/js/scripts.js') }}"></script>
     <script src="{{ asset('dashboard/js/custom.js') }}"></script>
 

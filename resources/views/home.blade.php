@@ -95,3 +95,7 @@
         </div>
     </section>
 @endsection
+
+@section('specific-js')
+    {{-- <script src="{{ asset('dashboard/js/page/index-0.js') }}"></script> --}}
+@endsection
