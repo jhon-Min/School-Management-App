@@ -23,13 +23,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware('auth')->prefix('dashboard')->group(function () {
+Route::middleware('auth')->group(function () {
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard/home', [HomeController::class, 'index'])->name('home');
 
     // Profile
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::post('/profile/update-info', [ProfileController::class, 'updateProfileInfo'])->name('profile.profile-edit');
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+        Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
+        Route::post('/update-info', [ProfileController::class, 'updateProfileInfo'])->name('profile.profile-edit');
+        Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+    });
 
     // Department
     Route::get('/department/datatable/ssd', [DepartmentController::class, 'ssd'])->name('department.ssd');

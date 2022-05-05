@@ -80,7 +80,7 @@
                         Swal.fire("Deleted!", "Your file has been deleted.", "success");
                         $.ajax({
                             method: "DELETE",
-                            url: `/dashboard/department/${id}`,
+                            url: `/department/${id}`,
                         }).done(function(res) {
                             console.log('aung p')
                             table.ajax.reload();

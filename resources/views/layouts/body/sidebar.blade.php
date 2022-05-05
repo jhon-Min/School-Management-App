@@ -19,17 +19,19 @@
 
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fa-solid fa-user"></i>
+                    <i class="fas fa-solid fa-user"></i>
                     <span>Manage Profile</span>
                 </a>
                 <ul class="dropdown-menu">
                     <x-menu-item link="{{ route('profile.index') }}">Profile</x-menu-item>
+                    <x-menu-item link="{{ route('profile.change-password') }}">Change Password</x-menu-item>
                 </ul>
             </li>
 
             <x-menu-title>Categories</x-menu-title>
 
-            <li class="dropdown">
+            <li
+                class="dropdown {{ Request::is('department') ? 'active' : '' }} {{ Request::is('department/create') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-solid fa-building"></i>
                     <span>Department</span>
@@ -43,7 +45,8 @@
 
             <x-menu-title>Management</x-menu-title>
 
-            <li class="dropdown">
+            <li
+                class="dropdown {{ Request::is('user') ? 'active' : '' }} {{ Request::is('user/create') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-solid fa-users"></i>
                     <span>Manage User</span>

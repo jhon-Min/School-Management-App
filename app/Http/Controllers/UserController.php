@@ -124,7 +124,7 @@ class UserController extends Controller
         $user->id_no = $request->id_no;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password ? Hash::make($request->password) : 'password';
+        $user->password = $request->password ? Hash::make($request->password) : $user->password;
         $user->phone = $request->phone;
         $user->nrc_number = $request->nrc;
         $user->mname = $request->mname;
