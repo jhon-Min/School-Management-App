@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -45,8 +46,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('/user', UserController::class);
 
     Route::prefix('setup')->group(function(){
+        // Course
         Route::get('/course/datatable/ssd', [CourseController::class, 'ssd'])->name('course.ssd');
         Route::resource('/course', CourseController::class);
+
+         // Shift
+         Route::get('/shift/datatable/ssd', [ShiftController::class, 'ssd'])->name('shift.ssd');
+         Route::resource('/shift', ShiftController::class);
     });
 
 });
