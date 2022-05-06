@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -42,6 +43,11 @@ Route::middleware('auth')->group(function () {
     // User Management
     Route::get('/user/datatable/ssd', [UserController::class, 'ssd'])->name('user.ssd');
     Route::resource('/user', UserController::class);
+
+    Route::prefix('setup')->group(function(){
+        Route::get('/course/datatable/ssd', [CourseController::class, 'ssd'])->name('course.ssd');
+        Route::resource('/course', CourseController::class);
+    });
 
 });
 
