@@ -38,6 +38,11 @@ mark{
     }
 }
 
+.form-control[readonly] {
+    background-color: white;
+    opacity: 1;
+}
+
 
 // =========== Datatable ==========
 .table td, .table th {
@@ -69,3 +74,7 @@ mark{
     background-color: white;
     border-color: #ced4da;
  }
+
+ .select2-container {
+    width: 100% !important;
+}

@@ -1463,6 +1463,11 @@ mark {
   background: white !important;
 }
 
+.form-control[readonly] {
+  background-color: white;
+  opacity: 1;
+}
+
 .table td, .table th {
   padding: 12px 10px;
   vertical-align: middle;
@@ -1488,4 +1493,8 @@ div.dataTables_wrapper div.dataTables_paginate {
 .select2-container .select2-selection--single {
   background-color: white;
   border-color: #ced4da;
+}
+
+.select2-container {
+  width: 100% !important;
 }

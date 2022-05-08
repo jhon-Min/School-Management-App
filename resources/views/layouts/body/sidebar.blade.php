@@ -69,6 +69,9 @@ $prefix = Request::route()->getPrefix();
 
                     <x-menu-item link="{{ route('shift.index') }}">Shifts</x-menu-item>
                     <x-menu-item link="{{ route('shift.create') }}">Create Shift</x-menu-item>
+
+                    <x-menu-item link="{{ route('classroom.index') }}">Classroom Lists</x-menu-item>
+                    <x-menu-item link="{{ route('classroom.create') }}">Create Classroom</x-menu-item>
                 </ul>
             </li>
 

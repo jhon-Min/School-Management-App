@@ -25,9 +25,9 @@ class ShiftController extends Controller
     {
         $shifts = Shift::query();
         return DataTables::of($shifts)
-            ->addColumn('plus-icon', function ($each) {
-                return null;
-            })
+            // ->addColumn('plus-icon', function ($each) {
+            //     return null;
+            // })
             ->addColumn('action', function ($each) {
                 $edit = "";
                 $del = "";

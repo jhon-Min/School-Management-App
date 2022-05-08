@@ -1,31 +1,33 @@
 @extends('layouts.app')
 
 @section('title')
-    All Shift
+    All Classroom
 @endsection
 
 @section('content')
     <section class="section">
-        <x-bread-crumb title="Shift">
-            <div class="breadcrumb-item">Dep Lists</div>
+        <x-bread-crumb title="Class Lists">
+            <div class="breadcrumb-item">Class Lists</div>
         </x-bread-crumb>
     </section>
     <div class="row">
         <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4>Shifts</h4>
-                    <a href="{{ route('shift.create') }}" class="btn btn-primary">Add</a>
+                    <h4>Classroom</h4>
+                    <a href="{{ route('classroom.create') }}" class="btn btn-primary">Add</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped table-hover dt-responsive no-wrap w-100" id="dataTable">
                         <thead>
                             <tr>
-                                {{-- <th class="no-sort"></th> --}}
+                                <th>Teacher</th>
+                                <th>Class</th>
+                                <th>Course</th>
                                 <th>Shift</th>
-                                <th>Start_Time</th>
-                                <th>End_Time</th>
-                                <th class="">Action</th>
+                                <th>Open Date</th>
+                                <th>Status</th>
+                                <th class="no-sort">Action</th>
                                 <th class="hidden">Created_At</th>
                             </tr>
                         </thead>
@@ -40,23 +42,30 @@
     <script>
         $(document).ready(function() {
             var table = $('#dataTable').DataTable({
-                ajax: '{{ route('shift.ssd') }}',
-                columns: [
-                    // {
-                    //     data: 'plus-icon',
-                    //     name: 'plus-icon',
-                    // },
+                ajax: '{{ route('classroom.ssd') }}',
+                columns: [{
+                        data: 'teacher',
+                        name: 'teacher'
+                    },
                     {
                         data: 'name',
-                        name: 'name'
+                        name: 'name',
                     },
                     {
-                        data: 'start_time',
-                        name: 'start_time',
+                        data: 'course',
+                        name: 'course',
                     },
                     {
-                        data: 'end_time',
-                        name: 'end_time',
+                        data: 'shift',
+                        name: 'shift',
+                    },
+                    {
+                        data: 'start_date',
+                        name: 'start_date',
+                    },
+                    {
+                        data: 'status',
+                        name: 'status',
                     },
                     {
                         data: 'action',
@@ -68,10 +77,9 @@
                     },
                 ],
                 order: [
-                    [4, "desc"]
+                    [7, "desc"]
                 ],
             });
-
             $(document).on('click', '.del-btn', function(e, id) {
                 e.preventDefault();
                 var id = $(this).data("id");
@@ -87,7 +95,7 @@
                         Swal.fire("Deleted!", "Your file has been deleted.", "success");
                         $.ajax({
                             method: "DELETE",
-                            url: `/setup/shift/${id}`,
+                            url: `/setup/classroom/${id}`,
                         }).done(function(res) {
                             table.ajax.reload();
                         })
