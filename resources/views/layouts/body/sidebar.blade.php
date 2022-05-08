@@ -44,7 +44,7 @@ $prefix = Request::route()->getPrefix();
                 </ul>
             </li>
 
-            <x-menu-title>Management</x-menu-title>
+            <x-menu-title>Admin Management</x-menu-title>
             <li
                 class="dropdown {{ Request::is('user') ? 'active' : '' }} {{ Request::is('user/create') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
@@ -54,6 +54,19 @@ $prefix = Request::route()->getPrefix();
                 <ul class="dropdown-menu">
                     <x-menu-item link="{{ route('user.index') }}">Users</x-menu-item>
                     <x-menu-item link="{{ route('user.create') }}">Create User</x-menu-item>
+                </ul>
+            </li>
+
+            <x-menu-title>Management</x-menu-title>
+            <li
+                class="dropdown {{ Request::is('student') ? 'active' : '' }} {{ Request::is('student/take-course') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-solid fa-people-group"></i>
+                    <span>Manage Students</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <x-menu-item link="{{ route('student.index') }}">Student Lists</x-menu-item>
+                    <x-menu-item link="{{ route('student.take-course') }}">Take Courses</x-menu-item>
                 </ul>
             </li>
 

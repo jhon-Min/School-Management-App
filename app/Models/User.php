@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function rooms()
+    {
+        return $this->belongsToMany(Classroom::class);
+    }
 }

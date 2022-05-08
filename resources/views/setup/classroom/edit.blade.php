@@ -112,7 +112,7 @@
 @endsection
 
 @section('scripts')
-    {!! JsValidator::formRequest('App\Http\Requests\UpdateClassRoomRequest', '#editForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\UpdateClassroomRequest', '#editForm') !!}
     <script>
         $(".start-date").flatpickr({
             dateFormat: "d.m.Y",

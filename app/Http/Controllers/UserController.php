@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Course;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -62,7 +63,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('user.create');
+        $courses = Course::latest()->get();
+        return view('user.create', compact('courses'));
     }
 
     public function store(StoreUserRequest $request)
