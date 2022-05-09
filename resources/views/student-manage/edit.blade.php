@@ -35,11 +35,11 @@
                         <div class="form-group mb-5">
                             <label>Courses</label>
                             <select name="rooms[]" class="form-control select2" multiple="">
-                                {{-- @foreach ($rooms as $room)
-                                    <option value="{{ $room->id }}" @if (old('room_id') == $room->id) selected @endif>
+                                @foreach ($rooms as $room)
+                                    <option value="{{ $room->id }}" @if (in_array($room->id, $old_rooms)) selected @endif>
                                         {{ $room->name }} ( {{ $room->course->name }} )
                                     </option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
 

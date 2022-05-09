@@ -76,11 +76,16 @@ class StudentManageController extends Controller
     public function edit($id)
     {
         $student = User::findOrFail($id);
-        return view('student-manage.edit', compact('student'));
+        $rooms =  Classroom::latest()->get();
+        $old_rooms = $student->rooms->pluck('id')->toArray();
+        return view('student-manage.edit', compact('student', 'rooms', 'old_rooms'));
     }
 
     public function update(UpdateStudentManageRequest $request, $id)
     {
-        return $request;
+        $student = User::findOrFail($request->user_id);
+        $student->rooms()->sync($request->rooms);
+
+        return redirect()->route('student.index')->with('create_alert', ['icon' => 'success', 'title' => 'Successfully Updated', 'message' => "Add student's course are successfully updated"]);
     }
 }
