@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Add Student's Courses
+    Edit {{ $student->name }}s Courses
 @endsection
 
 @section('content')
     <section class="section">
         <x-bread-crumb title="Student's Courses">
             <div class="breadcrumb-item"><a href="{{ route('student.index') }}">Student Lists</a></div>
-            <div class="breadcrumb-item">Take Courses</div>
+            <div class="breadcrumb-item">Edit Courses</div>
         </x-bread-crumb>
     </section>
 
@@ -16,32 +16,30 @@
         <div class="col-12 col-lg-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>Add Student's Courses</h4>
+                    <h4>Edit {{ $student->name }}'s Courses</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('student.store-courses') }}" id="createForm" method="POST">
+                    <form action="{{ route('student.update', $student->id) }}" id="editForm" method="POST">
                         @csrf
 
                         <div class="form-group">
                             <label>Student</label>
                             <select name="user_id" class="form-control select2">
                                 <option value="">-- Please Choose --</option>
-                                @foreach ($students as $student)
-                                    <option value="{{ $student->id }}" @if (old('student_id') == $student->id) selected @endif>
-                                        {{ $student->name }}
-                                    </option>
-                                @endforeach
+                                <option value="{{ $student->id }}" selected>
+                                    {{ $student->name }}
+                                </option>
                             </select>
                         </div>
 
                         <div class="form-group mb-5">
                             <label>Courses</label>
                             <select name="rooms[]" class="form-control select2" multiple="">
-                                @foreach ($rooms as $room)
+                                {{-- @foreach ($rooms as $room)
                                     <option value="{{ $room->id }}" @if (old('room_id') == $room->id) selected @endif>
                                         {{ $room->name }} ( {{ $room->course->name }} )
                                     </option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
 
@@ -58,6 +56,5 @@
 @endsection
 
 @section('scripts')
-    {!! JsValidator::formRequest('App\Http\Requests\StoreStudentManageRequest', '#createForm') !!}
-    <script></script>
+    {!! JsValidator::formRequest('App\Http\Requests\UpdateStudentManageRequest', '#editForm') !!}
 @endsection

@@ -23,9 +23,9 @@ class UpdateClassroomRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('classroom')->id;
+        // $id = $this->route('classroom')->id;
         return [
-            "name" => "required|min:2|max:100|unique:classrooms,name," . $id,
+            "name" => "required|min:2|max:100",
             "course_id" => "required",
             "shift_id" => "required",
             "user_id" => "required",

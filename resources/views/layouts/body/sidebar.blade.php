@@ -59,7 +59,7 @@ $prefix = Request::route()->getPrefix();
 
             <x-menu-title>Management</x-menu-title>
             <li
-                class="dropdown {{ Request::is('student') ? 'active' : '' }} {{ Request::is('student/take-course') ? 'active' : '' }}">
+                class="dropdown {{ Request::is('student') ? 'active' : '' }} {{ Request::is('student/course/create') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-solid fa-people-group"></i>
                     <span>Manage Students</span>

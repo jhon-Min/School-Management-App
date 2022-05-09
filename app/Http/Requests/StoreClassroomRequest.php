@@ -24,7 +24,7 @@ class StoreClassroomRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|min:2|max:100|unique:classrooms,name",
+            "name" => "required|min:2|max:100",
             "course_id" => "required",
             "shift_id" => "required",
             "user_id" => "required",

@@ -7,6 +7,7 @@ use App\Models\Classroom;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreStudentManageRequest;
+use App\Http\Requests\UpdateStudentManageRequest;
 
 class StudentManageController extends Controller
 {
@@ -24,7 +25,7 @@ class StudentManageController extends Controller
                 $edit = "";
                 $detail= "";
 
-                $edit = '<a href="'.route('user.edit', $each->id).'" class="btn mr-1 btn-success btn-sm rounded-circle"><i class="fa-solid fa-pen-to-square fw-light"></i></a>';
+                $edit = '<a href="'.route('student.edit', $each->id).'" class="btn mr-1 btn-success btn-sm rounded-circle"><i class="fa-solid fa-pen-to-square fw-light"></i></a>';
 
                 $detail = '<a href="' . route('student.show', $each->id) . '" class="btn mr-1 btn-info btn-sm rounded-circle"><i class="fa-solid fa-circle-info"></i></a>';
 
@@ -33,7 +34,7 @@ class StudentManageController extends Controller
             ->addColumn('course', function($each){
                 $output ="<div>";
                 foreach ($each->rooms as $room) {
-                    $output .=  $room->course->name. ', ' . '<span class="mx-1"></span>' . '  ' ;
+                    $output .=  $room->course->name. ', ' . '<br>';
                 }
 
                 return $output;
@@ -51,7 +52,7 @@ class StudentManageController extends Controller
     }
 
 
-    public function takeCourse()
+    public function create()
     {
         $rooms =  Classroom::latest()->get();
         $students = User::where('usertype', 'student')->latest()->get();
@@ -70,5 +71,16 @@ class StudentManageController extends Controller
     {
         $student = User::findOrFail($id);
         return view('student-manage.show', compact('student'));
+    }
+
+    public function edit($id)
+    {
+        $student = User::findOrFail($id);
+        return view('student-manage.edit', compact('student'));
+    }
+
+    public function update(UpdateStudentManageRequest $request, $id)
+    {
+        return $request;
     }
 }

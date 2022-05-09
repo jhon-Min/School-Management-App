@@ -13,7 +13,7 @@
     </section>
 
     <div class="row mt-sm-4">
-        <div class="col-12 col-md-12 col-lg-6">
+        <div class="col-12 col-md-12 col-lg-5">
             <div class="card profile-widget">
                 <div class="profile-widget-header">
                     <img alt="image" src="{{ $student->profile_img_path() }}" class="rounded-circle profile-image">
@@ -55,15 +55,44 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-12 col-lg-6">
-            <div class="card">
+        <div class="col-12 col-md-12 col-lg-7">
+            <div class="card shadow-sm">
                 <div class="card-header">
                     <h4>Courses</h4>
                 </div>
-                <div class="card-body">
-
-
-
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Room No</th>
+                                <th>Course</th>
+                                <th>Start Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="pt-3">
+                                    @foreach ($student->rooms as $room)
+                                        <p class="mb-2">
+                                            {{ $room->name }}
+                                            <span class="ml-1">( {{ $room->shift->name }} )</span>
+                                        </p>
+                                    @endforeach
+                                </td>
+                                <td class="pt-3">
+                                    @foreach ($student->rooms as $room)
+                                        <p class="mb-2">{{ $room->course->name }}</p>
+                                    @endforeach
+                                </td>
+                                <td class="pt-3">
+                                    @foreach ($student->rooms as $room)
+                                        <p class="mb-2">
+                                            {{ Carbon\Carbon::parse($room->start_date)->format('d.m.Y') }}</p>
+                                    @endforeach
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

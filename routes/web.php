@@ -22,15 +22,13 @@ use App\Http\Controllers\StudentManageController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // Profile
     Route::prefix('profile')->group(function () {
@@ -52,8 +50,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/student/datatable/ssd', [StudentManageController::class, 'ssd'])->name('student.ssd');
     Route::get('/student', [StudentManageController::class, 'index'])->name('student.index');
     Route::get('/student/{id}', [StudentManageController::class, 'show'])->name('student.show');
-    Route::get('/student/take-course', [StudentManageController::class, 'takeCourse'])->name('student.take-course');
-    Route::post('/student/store-courses', [StudentManageController::class, 'storeCourses'])->name('student.store-courses');
+    Route::get('/student/course/create', [StudentManageController::class, 'create'])->name('student.take-course');
+    Route::get('/student/{id}/edit', [StudentManageController::class, 'edit'])->name('student.edit');
+    Route::post('/student/course/store', [StudentManageController::class, 'storeCourses'])->name('student.store-courses');
+    Route::post('/student/{id}', [StudentManageController::class, 'update'])->name('student.update');
 
     Route::prefix('setup')->group(function(){
         // Course
