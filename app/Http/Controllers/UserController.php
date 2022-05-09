@@ -33,6 +33,9 @@ class UserController extends Controller
             ->editColumn('join_date', function ($each) {
                 return Carbon::parse($each->date_of_join)->format('d M Y');
             })
+            ->editColumn('usertype', function ($each) {
+                return $each->usertype ? $each->usertype : '-';
+            })
             ->addColumn('dep', function($each){
                 return $each->department ? $each->department->name : '-';
             })

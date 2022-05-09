@@ -26,19 +26,27 @@ class StudentManageController extends Controller
 
                 $edit = '<a href="'.route('user.edit', $each->id).'" class="btn mr-1 btn-success btn-sm rounded-circle"><i class="fa-solid fa-pen-to-square fw-light"></i></a>';
 
-                $detail = '<a href="' . route('user.show', $each->id) . '" class="btn mr-1 btn-info btn-sm rounded-circle"><i class="fa-solid fa-circle-info"></i></a>';
+                $detail = '<a href="' . route('student.show', $each->id) . '" class="btn mr-1 btn-info btn-sm rounded-circle"><i class="fa-solid fa-circle-info"></i></a>';
 
                 return '<div class="action-icon">' . $edit  . $detail. '</div>';
             })
-            ->addColumn('classrooms', function($each){
+            ->addColumn('course', function($each){
                 $output ="<div>";
                 foreach ($each->rooms as $room) {
-                    $output .=  $room->name. ', ' . '<span class="mx-1"></span>' . '  ' ;
+                    $output .=  $room->course->name. ', ' . '<span class="mx-1"></span>' . '  ' ;
                 }
 
                 return $output;
             })
-            ->rawColumns(['action', 'classrooms'])
+            ->addColumn('room', function($each){
+                $output ="<div>";
+                foreach ($each->rooms as $room) {
+                    $output .=  $room->name. ', ' . '<br>';
+                }
+
+                return $output;
+            })
+            ->rawColumns(['action', 'course', 'room'])
             ->make(true);
     }
 
@@ -56,5 +64,11 @@ class StudentManageController extends Controller
         $student->rooms()->sync($request->rooms);
 
         return redirect()->route('student.index')->with('create_alert', ['icon' => 'success', 'title' => 'Successfully Added', 'message' => "Add student's course are  successfully"]);
+    }
+
+    public function show($id)
+    {
+        $student = User::findOrFail($id);
+        return view('student-manage.show', compact('student'));
     }
 }

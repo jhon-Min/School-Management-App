@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
     // Student Management
     Route::get('/student/datatable/ssd', [StudentManageController::class, 'ssd'])->name('student.ssd');
     Route::get('/student', [StudentManageController::class, 'index'])->name('student.index');
+    Route::get('/student/{id}', [StudentManageController::class, 'show'])->name('student.show');
     Route::get('/student/take-course', [StudentManageController::class, 'takeCourse'])->name('student.take-course');
     Route::post('/student/store-courses', [StudentManageController::class, 'storeCourses'])->name('student.store-courses');
 

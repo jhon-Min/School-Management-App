@@ -23,7 +23,8 @@
                         <thead>
                             <tr>
                                 <th>Student</th>
-                                <th>Classrooms</th>
+                                <th>Room</th>
+                                <th>Courses</th>
                                 <th class="no-sort">Action</th>
                                 <th class="hidden">Created_At</th>
                             </tr>
@@ -45,8 +46,12 @@
                         name: 'name'
                     },
                     {
-                        data: 'classrooms',
-                        name: 'classrooms',
+                        data: 'room',
+                        name: 'room',
+                    },
+                    {
+                        data: 'course',
+                        name: 'course',
                     },
                     {
                         data: 'action',

@@ -16,7 +16,7 @@
         <div class="col-12 col-lg-10">
             <div class="card">
                 <div class="card-header">
-                    <h4>Add User</h4>
+                    <h4>Add Course</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('course.store') }}" id="createForm" method="POST">
