@@ -11,17 +11,20 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
     public function index()
     {
+        Gate::authorize('view', auth()->user());
         return view('user.index');
     }
 
     public function ssd(Request $request)
     {
+        Gate::authorize('view', auth()->user());
         $users = User::latest()->get();
         return DataTables::of($users)
             ->editColumn('created_at', function ($each) {
@@ -47,11 +50,17 @@ class UserController extends Controller
                 $detail = "";
                 $del = "";
 
+               if (auth()->user()->usertype == 'admin') {
                 $edit = '<a href="'.route('user.edit', $each->id).'" class="btn mr-1 btn-success btn-sm rounded-circle"><i class="fa-solid fa-pen-to-square fw-light"></i></a>';
+               }
 
+               if (auth()->user()->usertype == 'admin') {
                 $detail = '<a href="' . route('user.show', $each->id) . '" class="btn mr-1 btn-info btn-sm rounded-circle"><i class="fa-solid fa-circle-info"></i></a>';
+               }
 
+               if(auth()->user()->usertype == 'admin'){
                 $del = '<a href="#" class="btn btn-danger btn-sm rounded-circle del-btn" data-id="' . $each->id . '"><i class="fa-solid fa-trash-alt fw-light"></i></a>';
+               }
 
                 return '<div class="action-icon text-nowrap">' . $edit . $detail . $del . '</div>';
             })
@@ -66,6 +75,7 @@ class UserController extends Controller
 
     public function create()
     {
+        Gate::authorize('create', auth()->user());
         $courses = Course::latest()->get();
         return view('user.create', compact('courses'));
     }
@@ -104,12 +114,14 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        Gate::authorize('view', $user);
         return view('user.show', compact('user'));
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        Gate::authorize('update', $user);
         return view('user.edit', compact('user'));
     }
 
@@ -148,6 +160,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        Gate::authorize('delete', $user);
         Storage::disk('public')->delete('profile/' . $user->profile_photo);
         return $user->delete();
     }

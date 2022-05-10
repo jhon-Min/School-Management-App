@@ -2,11 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\ClassRoom;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ClassRoomPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -25,12 +24,12 @@ class ClassRoomPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ClassRoom  $classRoom
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, ClassRoom $classRoom)
+    public function view(User $user, User $model)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -41,41 +40,41 @@ class ClassRoomPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ClassRoom  $classRoom
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, ClassRoom $classRoom)
+    public function update(User $user, User $model)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ClassRoom  $classRoom
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, ClassRoom $classRoom)
+    public function delete(User $user, User $model)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ClassRoom  $classRoom
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, ClassRoom $classRoom)
+    public function restore(User $user, User $model)
     {
         //
     }
@@ -84,10 +83,10 @@ class ClassRoomPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ClassRoom  $classRoom
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, ClassRoom $classRoom)
+    public function forceDelete(User $user, User $model)
     {
         //
     }

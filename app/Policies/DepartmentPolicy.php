@@ -30,7 +30,7 @@ class DepartmentPolicy
      */
     public function view(User $user, Department $department)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -41,7 +41,7 @@ class DepartmentPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class DepartmentPolicy
      */
     public function update(User $user, Department $department)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -65,7 +65,7 @@ class DepartmentPolicy
      */
     public function delete(User $user, Department $department)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
@@ -17,11 +18,13 @@ class DepartmentController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view', auth()->user());
         return view('department.index');
     }
 
     public function ssd(Request $request)
     {
+        Gate::authorize('view', auth()->user());
         $departments = Department::query();
         return DataTables::of($departments)
             ->addColumn('plus-icon', function ($each) {
@@ -48,6 +51,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', auth()->user());
         return view('department.create');
     }
 
@@ -59,6 +63,7 @@ class DepartmentController extends Controller
      */
     public function store(StoreDepartmentRequest $request)
     {
+        Gate::authorize('view', auth()->user());
         $department = new Department();
         $department->name = $request->name;
         $department->phone = $request->phone;
@@ -86,6 +91,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
+        Gate::authorize('update', auth()->user());
         return view('department.edit', compact('department'));
     }
 
@@ -98,6 +104,7 @@ class DepartmentController extends Controller
      */
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
+        Gate::authorize('update', auth()->user());
         $department->name = $request->name;
         $department->phone = $request->phone;
         $department->update();
@@ -113,6 +120,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
+        Gate::authorize('delete', auth()->user());
         return $department->delete();
     }
 }

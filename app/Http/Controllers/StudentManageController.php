@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreStudentManageRequest;
 use App\Http\Requests\UpdateStudentManageRequest;
@@ -76,6 +77,7 @@ class StudentManageController extends Controller
     public function edit($id)
     {
         $student = User::findOrFail($id);
+
         $rooms =  Classroom::latest()->get();
         $old_rooms = $student->rooms->pluck('id')->toArray();
         return view('student-manage.edit', compact('student', 'rooms', 'old_rooms'));
