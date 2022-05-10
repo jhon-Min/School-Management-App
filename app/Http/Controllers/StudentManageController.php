@@ -55,6 +55,7 @@ class StudentManageController extends Controller
 
     public function create()
     {
+        Gate::authorize('create', auth()->user());
         $rooms =  Classroom::latest()->get();
         $students = User::where('usertype', 'student')->latest()->get();
         return view('student-manage.take-course', compact('rooms', 'students'));

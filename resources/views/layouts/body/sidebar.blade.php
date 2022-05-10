@@ -68,25 +68,38 @@ $prefix = Request::route()->getPrefix();
                 </a>
                 <ul class="dropdown-menu">
                     <x-menu-item link="{{ route('student.index') }}">Student Lists</x-menu-item>
-                    <x-menu-item link="{{ route('student.take-course') }}">Take Courses</x-menu-item>
+
+                    @if (auth()->user()->usertype == 'admin')
+                        <x-menu-item link="{{ route('student.take-course') }}">Take Courses</x-menu-item>
+                    @endif
                 </ul>
             </li>
 
-            <x-menu-title>Setup Management</x-menu-title>
+            @if (auth()->user()->usertype == 'admin' or auth()->user()->usertype == 'employee')
+                <x-menu-title>Setup Management</x-menu-title>
+            @endif
             <li class="dropdown {{ $prefix == 'setup/' ? 'active' : '' }} ">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                    <i class="fas fa-solid fa-table-list"></i>
-                    <span>Manage Setup</span>
-                </a>
+                @if (auth()->user()->usertype == 'admin' or auth()->user()->usertype == 'employee')
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                        <i class="fas fa-solid fa-table-list"></i>
+                        <span>Manage Setup</span>
+                    </a>
+                @endif
+
                 <ul class="dropdown-menu">
-                    <x-menu-item link="{{ route('course.index') }}">Courses</x-menu-item>
-                    <x-menu-item link="{{ route('course.create') }}">Create Course</x-menu-item>
+                    @if (auth()->user()->usertype == 'admin' or auth()->user()->usertype == 'employee')
+                        <x-menu-item link="{{ route('classroom.index') }}">Classroom Lists</x-menu-item>
+                    @endif
 
-                    <x-menu-item link="{{ route('shift.index') }}">Shifts</x-menu-item>
-                    <x-menu-item link="{{ route('shift.create') }}">Create Shift</x-menu-item>
+                    @if (auth()->user()->usertype == 'admin')
+                        <x-menu-item link="{{ route('classroom.create') }}">Create Classroom</x-menu-item>
 
-                    <x-menu-item link="{{ route('classroom.index') }}">Classroom Lists</x-menu-item>
-                    <x-menu-item link="{{ route('classroom.create') }}">Create Classroom</x-menu-item>
+                        <x-menu-item link="{{ route('course.index') }}">Courses</x-menu-item>
+                        <x-menu-item link="{{ route('course.create') }}">Create Course</x-menu-item>
+
+                        <x-menu-item link="{{ route('shift.index') }}">Shifts</x-menu-item>
+                        <x-menu-item link="{{ route('shift.create') }}">Create Shift</x-menu-item>
+                    @endif
                 </ul>
             </li>
 

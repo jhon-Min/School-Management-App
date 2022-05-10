@@ -30,7 +30,7 @@ class CoursePolicy
      */
     public function view(User $user, Course $course)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -41,7 +41,7 @@ class CoursePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class CoursePolicy
      */
     public function update(User $user, Course $course)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -65,7 +65,7 @@ class CoursePolicy
      */
     public function delete(User $user, Course $course)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**

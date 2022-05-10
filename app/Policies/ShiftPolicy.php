@@ -30,7 +30,7 @@ class ShiftPolicy
      */
     public function view(User $user, Shift $shift)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -41,7 +41,7 @@ class ShiftPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class ShiftPolicy
      */
     public function update(User $user, Shift $shift)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -65,7 +65,7 @@ class ShiftPolicy
      */
     public function delete(User $user, Shift $shift)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**

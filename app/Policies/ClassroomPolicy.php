@@ -30,7 +30,8 @@ class ClassroomPolicy
      */
     public function view(User $user, Classroom $classroom)
     {
-        //
+        $allowUser = ['admin', 'employee'];
+        return in_array($user->usertype, $allowUser);
     }
 
     /**
@@ -41,7 +42,7 @@ class ClassroomPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -53,7 +54,7 @@ class ClassroomPolicy
      */
     public function update(User $user, Classroom $classroom)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**
@@ -65,7 +66,7 @@ class ClassroomPolicy
      */
     public function delete(User $user, Classroom $classroom)
     {
-        //
+        return $user->usertype == 'admin';
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Models\Shift;
 use App\Models\Course;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
@@ -21,6 +22,7 @@ class ClassroomController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view', auth()->user());
         return view('setup.classroom.index');
     }
 
@@ -33,11 +35,15 @@ class ClassroomController extends Controller
                 $del = "";
                 $detail = "";
 
+               if (auth()->user()->usertype == 'admin') {
                 $edit = '<a href="'.route('classroom.edit', $each->id).'" class="btn mr-1 btn-success btn-sm rounded-circle"><i class="fa-solid fa-pen-to-square fw-light"></i></a>';
+               }
 
                 $detail = '<a href="' . route('classroom.show', $each->id) . '" class="btn mr-1 btn-info btn-sm rounded-circle"><i class="fa-solid fa-circle-info"></i></a>';
 
+               if (auth()->user()->usertype == 'admin') {
                 $del = '<a href="#" class="btn btn-danger btn-sm rounded-circle del-btn" data-id="' . $each->id . '"><i class="fa-solid fa-trash-alt fw-light"></i></a>';
+               }
 
                 return '<div class="action-icon">' . $edit . $detail  . $del. '</div>';
             })
@@ -70,6 +76,7 @@ class ClassroomController extends Controller
      */
     public function create()
     {
+        Gate::authorize('update', auth()->user());
         $courses = Course::latest()->get();
         $shifts = Shift::latest()->get();
         $teachers = User::where('usertype', 'employee')->latest()->get();
@@ -84,6 +91,7 @@ class ClassroomController extends Controller
      */
     public function store(StoreClassroomRequest $request)
     {
+        Gate::authorize('update', auth()->user());
         $room = new Classroom();
         $room->name = $request->name;
         $room->status = $request->status;
@@ -117,6 +125,7 @@ class ClassroomController extends Controller
      */
     public function edit(Classroom $classroom)
     {
+        Gate::authorize('update', auth()->user());
         $courses = Course::latest()->get();
         $shifts = Shift::latest()->get();
         $teachers = User::where('usertype', 'employee')->latest()->get();
@@ -132,6 +141,7 @@ class ClassroomController extends Controller
      */
     public function update(UpdateClassroomRequest $request, Classroom $classroom)
     {
+        Gate::authorize('update', auth()->user());
         $classroom->name = $request->name;
         $classroom->status = $request->status;
         $classroom->shift_id = $request->shift_id;
@@ -153,6 +163,7 @@ class ClassroomController extends Controller
      */
     public function destroy(Classroom $classroom)
     {
+        Gate::authorize('delete', auth()->user());
         return $classroom->delete();
     }
 }

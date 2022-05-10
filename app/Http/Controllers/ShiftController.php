@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Shift;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreShiftRequest;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\UpdateShiftRequest;
@@ -18,6 +19,7 @@ class ShiftController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view', auth()->user());
         return view('setup.shift.index');
     }
 
@@ -55,6 +57,7 @@ class ShiftController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', auth()->user());
         return view('setup.shift.create');
     }
 
@@ -66,6 +69,7 @@ class ShiftController extends Controller
      */
     public function store(StoreShiftRequest $request)
     {
+        Gate::authorize('create', auth()->user());
         $currentDate = date("Y-m-d");
         $shift = new Shift();
         $shift->name = $request->name;
@@ -95,6 +99,7 @@ class ShiftController extends Controller
      */
     public function edit(Shift $shift)
     {
+        Gate::authorize('update', auth()->user());
         return view('setup.shift.edit', compact('shift'));
     }
 
@@ -107,6 +112,7 @@ class ShiftController extends Controller
      */
     public function update(UpdateShiftRequest $request, Shift $shift)
     {
+        Gate::authorize('update', auth()->user());
         $currentDate = date("Y-m-d");
         $shift->name = $request->name;
         $shift->start_time = $currentDate . ' ' . $request->start_time;
@@ -124,6 +130,7 @@ class ShiftController extends Controller
      */
     public function destroy(Shift $shift)
     {
+        Gate::authorize('delete', auth()->user());
         return $shift->delete();
     }
 }
